@@ -1,0 +1,60 @@
+diff --git a/requirements.txt b/requirements.txt
+index 4c3b2a1..7d8e9f0 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,3 +1,4 @@
+-Django==4.2.7
++Django==5.0.1
+ psycopg2-binary==2.9.9
+-requests==2.31.0
++requests==2.32.3
++python-dateutil==2.9.0
+diff --git a/orders/migrations/0007_order_shipped_at.py b/orders/migrations/0007_order_shipped_at.py
+new file mode 100644
+index 0000000..b1c2d3e
+--- /dev/null
++++ b/orders/migrations/0007_order_shipped_at.py
+@@ -0,0 +1,16 @@
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++    dependencies = [
++        ("orders", "0006_order_status"),
++    ]
++
++    operations = [
++        migrations.AddField(
++            model_name="order",
++            name="shipped_at",
++            field=models.DateTimeField(null=True, blank=True),
++        ),
++        migrations.RunSQL("CREATE INDEX orders_shipped_at_idx ON orders_order (shipped_at);"),
++    ]
+diff --git a/orders/reports.py b/orders/reports.py
+index 6e5f4d3..8a9b0c1 100644
+--- a/orders/reports.py
++++ b/orders/reports.py
+@@ -1,7 +1,9 @@
+ from django.db import connection
+ 
+ 
+ def shipped_orders_since(day):
+     with connection.cursor() as cursor:
+-        cursor.execute("SELECT id, total FROM orders_order WHERE status = 'shipped'")
++        cursor.execute(
++            "SELECT id, total FROM orders_order WHERE shipped_at >= %s", [day]
++        )
+         return cursor.fetchall()
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 2a3b4c5..6d7e8f9 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -1,6 +1,6 @@
+ services:
+   db:
+-    image: postgres:15
++    image: postgres:16
+     environment:
+       POSTGRES_DB: shop
+       POSTGRES_PASSWORD: example

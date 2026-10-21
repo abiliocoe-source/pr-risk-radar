@@ -1,0 +1,33 @@
+diff --git a/shop/pricing.py b/shop/pricing.py
+index 3b18e51..a9c2f7d 100644
+--- a/shop/pricing.py
++++ b/shop/pricing.py
+@@ -1,6 +1,11 @@
+ from decimal import Decimal
+ 
+ 
+ def apply_discount(price: Decimal, percent: int) -> Decimal:
+     """Return the price after applying a percentage discount."""
+     return price * (Decimal(100) - percent) / Decimal(100)
++
++
++def format_price(price: Decimal, currency: str = "USD") -> str:
++    """Format a price for display, e.g. '12.50 USD'."""
++    return f"{price.quantize(Decimal('0.01'))} {currency}"
+diff --git a/tests/test_pricing.py b/tests/test_pricing.py
+index 77a0c11..c4d2e90 100644
+--- a/tests/test_pricing.py
++++ b/tests/test_pricing.py
+@@ -1,7 +1,11 @@
+ from decimal import Decimal
+ 
+-from shop.pricing import apply_discount
++from shop.pricing import apply_discount, format_price
+ 
+ 
+ def test_apply_discount():
+     assert apply_discount(Decimal("100"), 10) == Decimal("90")
++
++
++def test_format_price():
++    assert format_price(Decimal("12.5")) == "12.50 USD"
