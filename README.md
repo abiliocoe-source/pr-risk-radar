@@ -9,7 +9,7 @@ which lines triggered it.
 > highlights changes worth a closer look. It is **not** the probability of a
 > bug and **not** a security assessment.
 
-## Try it live →
+## Try it live!
 
 Now deployed, on: **https://pr-risk-radar.streamlit.app/** **!**
 
