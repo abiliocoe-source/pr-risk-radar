@@ -9,24 +9,9 @@ which lines triggered it.
 > highlights changes worth a closer look. It is **not** the probability of a
 > bug and **not** a security assessment.
 
-## Demo
+##Try it live →
 
-<!--
-Once docs/demo.gif exists, remove the comment markers and keep the line below:
-![PR Risk Radar demo](docs/demo.gif)
--->
-
-A demo GIF has not been recorded yet. To try the app right now, follow
-[Getting started](#getting-started) and pick an example from the dropdown.
-
-Suggested recording script (about 20 seconds, save as `docs/demo.gif`):
-
-1. Open the app with `streamlit run app.py`.
-2. Choose **Authentication / permission change** in "Example diffs".
-3. Click **Analyze** and pause on the score (65 / 100, High) and the testing-gap warning.
-4. Scroll through the risk signals and the matching lines, then the suggested tests.
-5. Click **Download analysis (JSON)**.
-6. Switch to **Low risk: small feature**, click **Analyze** and show the Low result.
+Now deployed, on: **https://pr-risk-radar.streamlit.app/** **!**
 
 ## The problem
 
