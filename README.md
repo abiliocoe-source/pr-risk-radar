@@ -1,17 +1,20 @@
 # PR Risk Radar
 
-PR Risk Radar is a small Streamlit app that reads a pasted Git diff and gives a
-transparent, rule-based estimate of how much extra review the change deserves.
-Every point in the score is tied to a rule you can read, and the app explains
-which lines triggered it.
+Paste a Git diff and see which parts of it deserve a closer review, why, and
+which tests are worth adding. Every point in the score comes from a rule you
+can read, and the app shows the lines that triggered it.
 
-> This is an educational portfolio project. The score is a heuristic that
-> highlights changes worth a closer look. It is **not** the probability of a
-> bug and **not** a security assessment.
+[![tests](https://github.com/abiliocoe-source/pr-risk-radar/actions/workflows/tests.yml/badge.svg)](https://github.com/abiliocoe-source/pr-risk-radar/actions/workflows/tests.yml)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pr-risk-radar.streamlit.app/)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-## Try it live!
+**Live demo:** https://pr-risk-radar.streamlit.app/ · [Leia em português](README.pt-BR.md)
 
-Now deployed, on: **https://pr-risk-radar.streamlit.app/** **!**
+![Analysis of the built-in authentication example: score 65/100, risk signals with matching lines, suggested tests](docs/screenshot.png)
+
+> The score is a heuristic that points at changes worth a closer look. It is
+> **not** the probability of a bug and **not** a security assessment.
 
 ## The problem
 
@@ -95,6 +98,7 @@ engine knows nothing about Streamlit, so each part can be tested on its own.
 Requires Python 3.11 or newer.
 
 ```bash
+git clone https://github.com/abiliocoe-source/pr-risk-radar.git
 cd pr-risk-radar
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
@@ -116,6 +120,7 @@ Then paste the file contents into the app.
 ## Running the tests
 
 ```bash
+pip install -r requirements-dev.txt
 python -m pytest
 ```
 
@@ -154,4 +159,4 @@ in `.github/workflows/tests.yml` runs the same command on Python 3.11, 3.12 and
 
 ## License
 
-Released under the [MIT License](LICENSE). The copyright holder name in `LICENSE` is a placeholder to be replaced with the author's name.
+[MIT](LICENSE)
